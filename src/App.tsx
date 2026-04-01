@@ -101,7 +101,7 @@ const handleMeetingSubmit = (e) => {
 
     // WhatsApp ONLY on success
     window.open(
-      `https://wa.me/916260234593?text=Hi Vidzyra, I booked a meeting. Name: ${formData.name}, Phone: ${formData.phone}`
+      `https://wa.me/918517895629?text=Hi Vidzyra, I booked a meeting. Name: ${formData.name}, Phone: ${formData.phone}`
     );
 
     // Auto close modal after 2 sec
@@ -122,7 +122,7 @@ const handleMeetingSubmit = (e) => {
 };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/916260234593', '_blank');
+    window.open('https://wa.me/918517895629', '_blank');
   };
 
   return (
