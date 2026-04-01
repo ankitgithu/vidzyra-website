@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Youtube, Linkedin, MessageCircle } from 'lucide-react';
 import logo from "./assets/logo.png";
+import emailjs from "emailjs-com";
+
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
   const [isSocialModalOpen, setIsSocialModalOpen] = useState(false);
   const [meetingType, setMeetingType] = useState('');
+  const [status, setStatus] = useState(""); // success | error
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -67,14 +70,56 @@ function App() {
       setIsMobileMenuOpen(false);
     }
   };
+const handleMeetingSubmit = (e) => {
+  e.preventDefault();
 
-  const handleMeetingSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert('Meeting booked successfully! We will contact you soon.');
-    setIsMeetingModalOpen(false);
-    setFormData({ name: '', phone: '', date: '', timeSlot: '' });
-    setMeetingType('');
+  const templateParams = {
+    name: formData.name,
+    phone: formData.phone,
+    type: meetingType,
+    date: formData.date || "N/A",
+    time: formData.timeSlot || "N/A",
   };
+
+  emailjs.send(
+    "service_rkkwt0m",
+    "template_ah9bomr",
+    templateParams,
+    "O4Rrn4KHzKBg9kAhS"
+  )
+  .then(() => {
+    setStatus("success");
+
+    // Reset form
+    setFormData({
+      name: "",
+      phone: "",
+      date: "",
+      timeSlot: "",
+    });
+    setMeetingType("");
+
+    // WhatsApp ONLY on success
+    window.open(
+      `https://wa.me/916260234593?text=Hi Vidzyra, I booked a meeting. Name: ${formData.name}, Phone: ${formData.phone}`
+    );
+
+    // Auto close modal after 2 sec
+    setTimeout(() => {
+      setIsMeetingModalOpen(false);
+      setStatus("");
+    }, 2000);
+  })
+  .catch((error) => {
+    console.error(error);
+    setStatus("error");
+
+    // Auto remove error after 3 sec
+    setTimeout(() => {
+      setStatus("");
+    }, 3000);
+  });
+};
 
   const openWhatsApp = () => {
     window.open('https://wa.me/916260234593', '_blank');
