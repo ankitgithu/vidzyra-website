@@ -45,23 +45,7 @@ function App() {
     }
   ];
 
-  const reviews = [
-    {
-      name: "Rahul Sharma",
-      review: "Vidzyra transformed our social media presence! Their video editing is top-notch and always delivered on time.",
-      stars: 5
-    },
-    {
-      name: "Priya Desai",
-      review: "Outstanding quality and creativity. The team understands exactly what we need and delivers beyond expectations.",
-      stars: 5
-    },
-    {
-      name: "Amit Patel",
-      review: "Professional service with excellent communication. Highly recommend for anyone looking to boost their digital content!",
-      stars: 5
-    }
-  ];
+
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -242,27 +226,21 @@ const handleMeetingSubmit = (e) => {
       </section>
 
       {/* Reviews Section */}
-      <section id="reviews" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">Client Reviews</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
-              <div
-                key={index}
-                className="glass-card p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-300"
-              >
-                <div className="flex mb-4">
-                  {[...Array(review.stars)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-blue-100 mb-6 italic">"{review.review}"</p>
-                <p className="font-bold text-lg">- {review.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     <section id="reviews" className="py-20 px-4 sm:px-6 lg:px-8">
+  <div className="container mx-auto">
+    <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">
+      Client Reviews
+    </h2>
+
+    {/* Elfsight Google Reviews Widget */}
+    <div className="flex justify-center">
+  <div
+    key={Math.random()}
+    className="elfsight-app-a603ff4b-f74e-40c4-86e5-b30d126ea8bc"
+  ></div>
+</div>
+  </div>
+</section>
 
       {/* CTA Section */}
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
