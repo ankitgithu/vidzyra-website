@@ -137,7 +137,7 @@ const handleMeetingSubmit = (e) => {
   <div className="hidden md:flex items-center space-x-8">
     <button onClick={() => scrollToSection('home')} className="hover:text-blue-300 transition-colors">Home</button>
     <button onClick={() => scrollToSection('services')} className="hover:text-blue-300 transition-colors">Services</button>
-    <button onClick={() => scrollToSection('reviews')} className="hover:text-blue-300 transition-colors">Reviews</button>
+   
     <button onClick={() => scrollToSection('contact')} className="hover:text-blue-300 transition-colors">Contact</button>
     <button onClick={() => setIsSocialModalOpen(true)} className="hover:text-blue-300 transition-colors">Socials</button>
 
@@ -226,21 +226,7 @@ const handleMeetingSubmit = (e) => {
       </section>
 
       {/* Reviews Section */}
-     <section id="reviews" className="py-20 px-4 sm:px-6 lg:px-8">
-  <div className="container mx-auto">
-    <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">
-      Client Reviews
-    </h2>
-
-    {/* Elfsight Google Reviews Widget */}
-    <div className="flex justify-center">
-  <div
-    key={Math.random()}
-    className="elfsight-app-a603ff4b-f74e-40c4-86e5-b30d126ea8bc"
-  ></div>
-</div>
-  </div>
-</section>
+   
 
       {/* CTA Section */}
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -258,7 +244,80 @@ const handleMeetingSubmit = (e) => {
           </div>
         </div>
       </section>
+              {/* 🏆 Our Customers Section */}
+<section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
+  <div className="max-w-7xl mx-auto text-center">
 
+    <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+      Our Customers
+    </h2>
+
+    <p className="text-blue-200 mb-14">
+      Trusted by creators and businesses across India
+    </p>
+
+    {/* Grid */}
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+
+      {[
+        { name: "Brand One", city: "Delhi", logo: "https://play-lh.googleusercontent.com/Izgz9k3unCYGGQSoJtp6XXlLkcrsQUZAZcSiNLLIXyf1pT8RjRKiUh8iXvZOJB4KCDg=w240-h480-rw" },
+        { name: "Brand Two", city: "Mumbai", logo: "https://scontent-bom5-2.xx.fbcdn.net/v/t39.30808-6/305797416_452033926942945_3184010486554020398_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=OC9eHGwcCYIQ7kNvwEa2PFt&_nc_oc=Ado8sXWghrG6RVx4x3HN12xJGQcvYNGBE4YYYheaPKSagUD2WUN2f5lEQgewglyEemrpOQZVfAkEq4v1bMAB9yro&_nc_zt=23&_nc_ht=scontent-bom5-2.xx&_nc_gid=gFuvB-u2tttUmm26txFFBA&_nc_ss=7a389&oh=00_Af1le0UBUC6lqj7kTIpuauS4Rs0cEYr0agQUne3T5xjMWw&oe=69D5D95D" },
+        { name: "Brand Three", city: "Bhopal", logo: "https://scontent-bom2-3.xx.fbcdn.net/v/t39.30808-6/477794861_618817550743522_5172861421116959719_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=2a1932&_nc_ohc=fXBE8W43kxAQ7kNvwENrNkN&_nc_oc=Adr2h7LLAYjxrMx-Gwd9knkv_MtisIP6yFgGAEgoaYIBcOlVbQDLWyl_Q47mU6rXGVdMTx4MKV8APnDDOaDE--Xl&_nc_zt=23&_nc_ht=scontent-bom2-3.xx&_nc_gid=iQdL952dDB1gjin0C8sGBw&_nc_ss=7a389&oh=00_Af2584sCjPhE1w6azhNCJ682QcN4w-U611vLFT6RJwMpkw&oe=69D5BCCF" },
+        { name: "Brand Four", city: "Indore", logo: "https://play-lh.googleusercontent.com/4JhtUlw3KljbNoRvQFglvBYQpvlJT0iwC_A7Dw6hrL0yzVnoSaWxZJV9XvEF2dwJJdg=w240-h480-rw" },
+        { name: "Brand Five", city: "Pune", logo: "https://scontent-bom5-1.xx.fbcdn.net/v/t39.30808-6/448603231_789428576654519_730945351043764092_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=660Rf2HrwXEQ7kNvwEzasQp&_nc_oc=AdqGJ3L5XQStghoeSfYsEyvFcaE5kY0CpLooPFMspbi2HgRtJ7aYDbHRHZ_nI-2PP3OtrMntGCu6k2gMNj8Wki4T&_nc_zt=23&_nc_ht=scontent-bom5-1.xx&_nc_gid=zNsWHVEoAu9SNpsnxehouQ&_nc_ss=7a389&oh=00_Af30nurzn3X9ApRuOZIYCF9U6UdawmdGZyycMDxhl3V2YQ&oe=69D5DB9B" },
+        { name: "Brand Six", city: "Jaipur", logo: "https://via.placeholder.com/100?text=Logo+6" },
+        { name: "Brand Seven", city: "Surat", logo: "https://via.placeholder.com/100?text=Logo+7" },
+        { name: "Brand Eight", city: "Ahmedabad", logo: "https://via.placeholder.com/100?text=Logo+8" },
+      ].map((item, i) => (
+        <div key={i} className="customer-card">
+          <img src={item.logo} alt={item.name} />
+          <p>{item.name}</p>
+          <span>{item.city}</span>
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+  {/* Styles */}
+  <style jsx>{`
+    .customer-card {
+      padding: 18px;
+      border-radius: 16px;
+      text-align: center;
+      color: white;
+
+      background: transparent; /* ❌ no background */
+      border: 1px solid rgba(255,255,255,0.15);
+
+      transition: all 0.3s ease;
+    }
+
+    .customer-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      background: rgba(255,255,255,0.05); /* slight hover only */
+    }
+
+    .customer-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+
+    .customer-card p {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .customer-card span {
+      font-size: 12px;
+      color: #bfdbfe;
+    }
+  `}</style>
+</section>
       {/* Footer */}
       <footer className="bg-blue-950/50 backdrop-blur-lg py-12 px-4 sm:px-6 lg:px-8 border-t border-blue-700/50">
         <div className="container mx-auto">
