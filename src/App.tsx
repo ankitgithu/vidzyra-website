@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Youtube, Linkedin, MessageCircle } from 'lucide-react';
 import logo from "./assets/logo.png";
 import emailjs from "emailjs-com";
+import bgimg from "./assets/bg img.png";
+
 
 
 function App() {
@@ -181,30 +183,50 @@ const handleMeetingSubmit = (e) => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-32 sm:pt-40 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 animate-fadeIn">
-            Grow Your Digital Presence<br />with <span className="bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">Vidzyra</span>
-          </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto animate-fadeIn">
-            We create stunning visuals and high-quality content that elevate your brand and engage your audience
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fadeIn">
-            <button
-              onClick={() => scrollToSection('services')}
-              className="bg-white text-blue-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-100 transition-all transform hover:scale-105 w-full sm:w-auto"
-            >
-              Explore Services
-            </button>
-            <button
-              onClick={() => setIsMeetingModalOpen(true)}
-              className="border-2 border-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-900 transition-all transform hover:scale-105 w-full sm:w-auto"
-            >
-              Schedule Meeting
-            </button>
-          </div>
-        </div>
-      </section>
+     <section
+  id="home"
+  className="pt-32 sm:pt-40 pb-20 px-4 sm:px-6 lg:px-8 relative bg-cover bg-center"
+  style={{
+    
+    backgroundImage: `url(${bgimg})`,
+  }}
+>
+  {/* 🔥 Dark Blue Overlay (important for text visibility) */}
+  <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a8a]/80 to-[#2563eb]/80"></div>
+
+  <div className="container mx-auto text-center relative z-10">
+    
+    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 animate-fadeIn text-white">
+      Grow Your Digital Presence<br />
+      with{" "}
+      <span className="bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
+        Vidzyra
+      </span>
+    </h1>
+
+    <p className="text-lg sm:text-xl lg:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto animate-fadeIn">
+      We create stunning visuals and high-quality content that elevate your brand and engage your audience
+    </p>
+
+    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fadeIn">
+      
+      <button
+        onClick={() => scrollToSection('services')}
+        className="bg-white text-blue-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-100 transition-all transform hover:scale-105 w-full sm:w-auto"
+      >
+        Explore Services
+      </button>
+
+      <button
+        onClick={() => setIsMeetingModalOpen(true)}
+        className="border-2 border-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-900 transition-all transform hover:scale-105 w-full sm:w-auto"
+      >
+        Schedule Meeting
+      </button>
+
+    </div>
+  </div>
+</section>
 
       {/* Services Section */}
       <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -260,14 +282,12 @@ const handleMeetingSubmit = (e) => {
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
 
       {[
-        { name: "Brand One", city: "Delhi", logo: "https://play-lh.googleusercontent.com/Izgz9k3unCYGGQSoJtp6XXlLkcrsQUZAZcSiNLLIXyf1pT8RjRKiUh8iXvZOJB4KCDg=w240-h480-rw" },
-        { name: "Brand Two", city: "Mumbai", logo: "https://scontent-bom5-2.xx.fbcdn.net/v/t39.30808-6/305797416_452033926942945_3184010486554020398_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=OC9eHGwcCYIQ7kNvwEa2PFt&_nc_oc=Ado8sXWghrG6RVx4x3HN12xJGQcvYNGBE4YYYheaPKSagUD2WUN2f5lEQgewglyEemrpOQZVfAkEq4v1bMAB9yro&_nc_zt=23&_nc_ht=scontent-bom5-2.xx&_nc_gid=gFuvB-u2tttUmm26txFFBA&_nc_ss=7a389&oh=00_Af1le0UBUC6lqj7kTIpuauS4Rs0cEYr0agQUne3T5xjMWw&oe=69D5D95D" },
-        { name: "Brand Three", city: "Bhopal", logo: "https://scontent-bom2-3.xx.fbcdn.net/v/t39.30808-6/477794861_618817550743522_5172861421116959719_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=2a1932&_nc_ohc=fXBE8W43kxAQ7kNvwENrNkN&_nc_oc=Adr2h7LLAYjxrMx-Gwd9knkv_MtisIP6yFgGAEgoaYIBcOlVbQDLWyl_Q47mU6rXGVdMTx4MKV8APnDDOaDE--Xl&_nc_zt=23&_nc_ht=scontent-bom2-3.xx&_nc_gid=iQdL952dDB1gjin0C8sGBw&_nc_ss=7a389&oh=00_Af2584sCjPhE1w6azhNCJ682QcN4w-U611vLFT6RJwMpkw&oe=69D5BCCF" },
-        { name: "Brand Four", city: "Indore", logo: "https://play-lh.googleusercontent.com/4JhtUlw3KljbNoRvQFglvBYQpvlJT0iwC_A7Dw6hrL0yzVnoSaWxZJV9XvEF2dwJJdg=w240-h480-rw" },
-        { name: "Brand Five", city: "Pune", logo: "https://scontent-bom5-1.xx.fbcdn.net/v/t39.30808-6/448603231_789428576654519_730945351043764092_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=660Rf2HrwXEQ7kNvwEzasQp&_nc_oc=AdqGJ3L5XQStghoeSfYsEyvFcaE5kY0CpLooPFMspbi2HgRtJ7aYDbHRHZ_nI-2PP3OtrMntGCu6k2gMNj8Wki4T&_nc_zt=23&_nc_ht=scontent-bom5-1.xx&_nc_gid=zNsWHVEoAu9SNpsnxehouQ&_nc_ss=7a389&oh=00_Af30nurzn3X9ApRuOZIYCF9U6UdawmdGZyycMDxhl3V2YQ&oe=69D5DB9B" },
-        { name: "Brand Six", city: "Jaipur", logo: "https://via.placeholder.com/100?text=Logo+6" },
-        { name: "Brand Seven", city: "Surat", logo: "https://via.placeholder.com/100?text=Logo+7" },
-        { name: "Brand Eight", city: "Ahmedabad", logo: "https://via.placeholder.com/100?text=Logo+8" },
+        { name: "Radon Chemistry Class", city: "Gwalior", logo: "https://play-lh.googleusercontent.com/Izgz9k3unCYGGQSoJtp6XXlLkcrsQUZAZcSiNLLIXyf1pT8RjRKiUh8iXvZOJB4KCDg=w240-h480-rw" },
+        { name: "SCI krishi Sansthan", city: "Gwalior", logo: "https://scontent-bom5-2.xx.fbcdn.net/v/t39.30808-6/305797416_452033926942945_3184010486554020398_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=OC9eHGwcCYIQ7kNvwEa2PFt&_nc_oc=Ado8sXWghrG6RVx4x3HN12xJGQcvYNGBE4YYYheaPKSagUD2WUN2f5lEQgewglyEemrpOQZVfAkEq4v1bMAB9yro&_nc_zt=23&_nc_ht=scontent-bom5-2.xx&_nc_gid=gFuvB-u2tttUmm26txFFBA&_nc_ss=7a389&oh=00_Af1le0UBUC6lqj7kTIpuauS4Rs0cEYr0agQUne3T5xjMWw&oe=69D5D95D" },
+        { name: "Cadets Classes", city: "Gwalior", logo: "https://scontent-bom2-3.xx.fbcdn.net/v/t39.30808-6/477794861_618817550743522_5172861421116959719_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=2a1932&_nc_ohc=fXBE8W43kxAQ7kNvwENrNkN&_nc_oc=Adr2h7LLAYjxrMx-Gwd9knkv_MtisIP6yFgGAEgoaYIBcOlVbQDLWyl_Q47mU6rXGVdMTx4MKV8APnDDOaDE--Xl&_nc_zt=23&_nc_ht=scontent-bom2-3.xx&_nc_gid=iQdL952dDB1gjin0C8sGBw&_nc_ss=7a389&oh=00_Af2584sCjPhE1w6azhNCJ682QcN4w-U611vLFT6RJwMpkw&oe=69D5BCCF" },
+        { name: "Awasthi Sir Commerce Classes", city: "Indore", logo: "https://play-lh.googleusercontent.com/4JhtUlw3KljbNoRvQFglvBYQpvlJT0iwC_A7Dw6hrL0yzVnoSaWxZJV9XvEF2dwJJdg=w240-h480-rw" },
+        { name: "Raindrop Classes", city: "Gwalior", logo: "https://scontent-bom5-1.xx.fbcdn.net/v/t39.30808-6/448603231_789428576654519_730945351043764092_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=660Rf2HrwXEQ7kNvwEzasQp&_nc_oc=AdqGJ3L5XQStghoeSfYsEyvFcaE5kY0CpLooPFMspbi2HgRtJ7aYDbHRHZ_nI-2PP3OtrMntGCu6k2gMNj8Wki4T&_nc_zt=23&_nc_ht=scontent-bom5-1.xx&_nc_gid=zNsWHVEoAu9SNpsnxehouQ&_nc_ss=7a389&oh=00_Af30nurzn3X9ApRuOZIYCF9U6UdawmdGZyycMDxhl3V2YQ&oe=69D5DB9B" },
+        
       ].map((item, i) => (
         <div key={i} className="customer-card">
           <img src={item.logo} alt={item.name} />
