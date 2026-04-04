@@ -197,7 +197,7 @@ const handleMeetingSubmit = (e) => {
               <div className="flex flex-col space-y-4">
                 <button onClick={() => scrollToSection('home')} className="text-left hover:text-blue-300 transition-colors">Home</button>
                 <button onClick={() => scrollToSection('services')} className="text-left hover:text-blue-300 transition-colors">Services</button>
-                <button onClick={() => scrollToSection('reviews')} className="text-left hover:text-blue-300 transition-colors">Reviews</button>
+               
                 <button onClick={() => scrollToSection('contact')} className="text-left hover:text-blue-300 transition-colors">Contact</button>
                 <button onClick={() => setIsSocialModalOpen(true)} className="text-left hover:text-blue-300 transition-colors">Socials</button>
                 <button
