@@ -1,24 +1,49 @@
-import { useState } from 'react';
-import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Youtube, Linkedin, MessageCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Youtube, Linkedin, MessageCircle, Code } from 'lucide-react';
 import logo from "./assets/logo.png";
 import emailjs from "emailjs-com";
 import bgimg from "./assets/bg img.png";
 
 
 
+
+
 function App() {
+
+  // ✅ yaha hona chahiye
+  
+   
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
   const [isSocialModalOpen, setIsSocialModalOpen] = useState(false);
   const [meetingType, setMeetingType] = useState('');
-  const [status, setStatus] = useState(""); // success | error
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    date: '',
-    timeSlot: ''
-  });
+  const [status, setStatus] = useState("");
 
+  const roles = [
+  "Video Editor 🎬",
+  "Graphics Designer 🎨",
+  "Content Creator 🚀"
+];
+
+const [roleIndex, setRoleIndex] = useState(0);
+const [animate, setAnimate] = useState(true);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+
+    setAnimate(false); // fade out
+
+    setTimeout(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+      setAnimate(true); // fade in
+    }, 400);
+
+  }, 2500);
+
+  return () => clearInterval(interval);
+}, []);
   const services = [
     {
       icon: <Video className="w-12 h-12" />,
@@ -44,7 +69,12 @@ function App() {
       icon: <Palette className="w-12 h-12" />,
       title: "Social Media Creative Design",
       description: "Stunning visuals tailored for Instagram, Facebook, LinkedIn, and other social platforms."
-    }
+    },
+    {
+  icon: <Code className="w-12 h-12" />,
+  title: "Web Development",
+  description: "Modern, responsive and high-performance websites built to grow your business and enhance your online presence."
+}
   ];
 
 
@@ -228,6 +258,37 @@ const handleMeetingSubmit = (e) => {
   </div>
 </section>
 
+{/* About Section */}
+<section className="relative min-h-[60vh] flex items-center justify-center text-center px-4 overflow-hidden">
+  
+  <div className="relative z-10 text-white">
+    
+    <h3 className="text-xl sm:text-2xl text-blue-200 mb-4 tracking-wider">
+      Ankit Rajput
+    </h3>
+
+   <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold flex justify-center items-center gap-3">
+  I am a
+  <span
+  className={`text-blue-300 inline-block transition-all duration-500 ease-in-out ${
+    animate
+      ? "opacity-100 translate-y-0"
+      : "opacity-0 translate-y-6"
+  }`}
+>
+  {roles[roleIndex]}
+</span>
+</h2>
+
+    <p className="mt-6 text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto">
+      I create high-quality videos, stunning graphics, and engaging content
+      that helps brands grow digitally.
+    </p>
+
+  </div>
+</section>
+
+
       {/* Services Section */}
       <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
@@ -267,76 +328,41 @@ const handleMeetingSubmit = (e) => {
         </div>
       </section>
               {/* 🏆 Our Customers Section */}
-<section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
+<section className="py-20 px-4 sm:px-6 lg:px-8">
   <div className="max-w-7xl mx-auto text-center">
 
-    <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-      Our Customers
+    <h2 className="text-4xl sm:text-5xl font-bold text-white mb-12">
+      Our Clients
     </h2>
 
-    <p className="text-blue-200 mb-14">
-      Trusted by creators and businesses across India
-    </p>
-
-    {/* Grid */}
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+    {/* Logo Grid */}
+    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
 
       {[
-        { name: "Radon Chemistry Class", city: "Gwalior", logo: "https://play-lh.googleusercontent.com/Izgz9k3unCYGGQSoJtp6XXlLkcrsQUZAZcSiNLLIXyf1pT8RjRKiUh8iXvZOJB4KCDg=w240-h480-rw" },
-        { name: "SCI krishi Sansthan", city: "Gwalior", logo: "https://scontent-bom5-2.xx.fbcdn.net/v/t39.30808-6/305797416_452033926942945_3184010486554020398_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=OC9eHGwcCYIQ7kNvwEa2PFt&_nc_oc=Ado8sXWghrG6RVx4x3HN12xJGQcvYNGBE4YYYheaPKSagUD2WUN2f5lEQgewglyEemrpOQZVfAkEq4v1bMAB9yro&_nc_zt=23&_nc_ht=scontent-bom5-2.xx&_nc_gid=gFuvB-u2tttUmm26txFFBA&_nc_ss=7a389&oh=00_Af1le0UBUC6lqj7kTIpuauS4Rs0cEYr0agQUne3T5xjMWw&oe=69D5D95D" },
-        { name: "Cadets Classes", city: "Gwalior", logo: "https://scontent-bom2-3.xx.fbcdn.net/v/t39.30808-6/477794861_618817550743522_5172861421116959719_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=2a1932&_nc_ohc=fXBE8W43kxAQ7kNvwENrNkN&_nc_oc=Adr2h7LLAYjxrMx-Gwd9knkv_MtisIP6yFgGAEgoaYIBcOlVbQDLWyl_Q47mU6rXGVdMTx4MKV8APnDDOaDE--Xl&_nc_zt=23&_nc_ht=scontent-bom2-3.xx&_nc_gid=iQdL952dDB1gjin0C8sGBw&_nc_ss=7a389&oh=00_Af2584sCjPhE1w6azhNCJ682QcN4w-U611vLFT6RJwMpkw&oe=69D5BCCF" },
-        { name: "Awasthi Sir Commerce Classes", city: "Indore", logo: "https://play-lh.googleusercontent.com/4JhtUlw3KljbNoRvQFglvBYQpvlJT0iwC_A7Dw6hrL0yzVnoSaWxZJV9XvEF2dwJJdg=w240-h480-rw" },
-        { name: "Raindrop Classes", city: "Gwalior", logo: "https://scontent-bom5-1.xx.fbcdn.net/v/t39.30808-6/448603231_789428576654519_730945351043764092_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=660Rf2HrwXEQ7kNvwEzasQp&_nc_oc=AdqGJ3L5XQStghoeSfYsEyvFcaE5kY0CpLooPFMspbi2HgRtJ7aYDbHRHZ_nI-2PP3OtrMntGCu6k2gMNj8Wki4T&_nc_zt=23&_nc_ht=scontent-bom5-1.xx&_nc_gid=zNsWHVEoAu9SNpsnxehouQ&_nc_ss=7a389&oh=00_Af30nurzn3X9ApRuOZIYCF9U6UdawmdGZyycMDxhl3V2YQ&oe=69D5DB9B" },
-        
-      ].map((item, i) => (
-        <div key={i} className="customer-card">
-          <img src={item.logo} alt={item.name} />
-          <p>{item.name}</p>
-          <span>{item.city}</span>
+        "https://play-lh.googleusercontent.com/Izgz9k3unCYGGQSoJtp6XXlLkcrsQUZAZcSiNLLIXyf1pT8RjRKiUh8iXvZOJB4KCDg=w240-h480-rw",
+        "https://scontent-bom5-2.xx.fbcdn.net/v/t39.30808-6/305797416_452033926942945_3184010486554020398_n.jpg",
+        "https://scontent-bom2-3.xx.fbcdn.net/v/t39.30808-6/477794861_618817550743522_5172861421116959719_n.jpg",
+        "https://play-lh.googleusercontent.com/4JhtUlw3KljbNoRvQFglvBYQpvlJT0iwC_A7Dw6hrL0yzVnoSaWxZJV9XvEF2dwJJdg=w240-h480-rw",
+        "https://scontent-bom5-1.xx.fbcdn.net/v/t39.30808-6/448603231_789428576654519_730945351043764092_n.jpg",
+        "https://via.placeholder.com/150",
+        "https://via.placeholder.com/150",
+        "https://via.placeholder.com/150",
+      ].map((logo, i) => (
+        <div
+          key={i}
+          className="aspect-square flex items-center justify-center border border-white/10 rounded-xl p-4"
+        >
+          <img
+            src={logo}
+            alt="client"
+            className="w-full h-full object-contain"
+          />
         </div>
       ))}
 
     </div>
 
   </div>
-
-  {/* Styles */}
-  <style jsx>{`
-    .customer-card {
-      padding: 18px;
-      border-radius: 16px;
-      text-align: center;
-      color: white;
-
-      background: transparent; /* ❌ no background */
-      border: 1px solid rgba(255,255,255,0.15);
-
-      transition: all 0.3s ease;
-    }
-
-    .customer-card:hover {
-      transform: translateY(-6px) scale(1.03);
-      background: rgba(255,255,255,0.05); /* slight hover only */
-    }
-
-    .customer-card img {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      margin: auto;
-      margin-bottom: 10px;
-    }
-
-    .customer-card p {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .customer-card span {
-      font-size: 12px;
-      color: #bfdbfe;
-    }
-  `}</style>
 </section>
       {/* Footer */}
       <footer className="bg-blue-950/50 backdrop-blur-lg py-12 px-4 sm:px-6 lg:px-8 border-t border-blue-700/50">
@@ -350,7 +376,7 @@ const handleMeetingSubmit = (e) => {
               <h4 className="text-xl font-bold mb-4">Quick Links</h4>
               <div className="flex flex-col space-y-2">
                 <button onClick={() => scrollToSection('services')} className="text-left text-blue-200 hover:text-white transition-colors">Services</button>
-                <button onClick={() => scrollToSection('reviews')} className="text-left text-blue-200 hover:text-white transition-colors">Reviews</button>
+                
                 <button onClick={() => setIsMeetingModalOpen(true)} className="text-left text-blue-200 hover:text-white transition-colors">Schedule Meeting</button>
               </div>
             </div>
@@ -370,7 +396,7 @@ const handleMeetingSubmit = (e) => {
             </div>
           </div>
           <div className="text-center pt-8 border-t border-blue-700/50 text-blue-200">
-            © 2024 Vidzyra. All rights reserved.
+            © 2026 Vidzyra. All rights reserved.
           </div>
         </div>
       </footer>
