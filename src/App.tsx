@@ -23,6 +23,25 @@ function App() {
   const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
   const [active, setActive] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowAlert(true);
+  }, 1000);
+
+  return () => clearTimeout(timer);
+}, []);
+
+// Auto close after 10 sec
+useEffect(() => {
+  if (showAlert) {
+    const timer = setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }
+}, [showAlert]);
 
   const [formData, setFormData] = useState({
   name: "",
@@ -614,6 +633,55 @@ const handleMeetingSubmit = (e) => {
         </div>
       </footer>
 
+
+    {showAlert && (
+  <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.8, opacity: 0 }}
+      className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 relative max-w-md w-full text-gray-900"
+    >
+
+      {/* Close Button */}
+      <button
+        onClick={() => setShowAlert(false)}
+        className="absolute top-3 right-4 text-gray-600 text-xl font-bold hover:text-black"
+      >
+        ✕
+      </button>
+
+      {/* Heading */}
+      <h2 className="text-2xl font-bold mb-4 text-blue-600">
+        🚀 Limited Time Offer
+      </h2>
+
+      {/* Points */}
+      <ul className="space-y-3 text-sm">
+
+        <li>⚡ Only 5 slots available this month</li>
+
+        <li>🎬 High-quality video editing for reels & YouTube</li>
+
+        <li>📈 Content designed to boost engagement & growth</li>
+
+        <li>💬 Direct support via WhatsApp for quick response</li>
+
+      </ul>
+
+      {/* CTA */}
+      <button
+        onClick={openWhatsApp}
+        className="mt-6 w-full bg-blue-600 text-white py-3 rounded-full font-semibold hover:bg-blue-700 transition"
+      >
+        Book Now
+      </button>
+
+    </motion.div>
+  </div>
+)}
+
       {selectedService && (
   <div
     className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
@@ -640,9 +708,9 @@ const handleMeetingSubmit = (e) => {
             `https://wa.me/918517895629?text=Hi Vidzyra, I'm interested in ${selectedService.title}`
           )
         }
-        className="w-full bg-green-500 py-3 rounded-full font-semibold hover:bg-green-600 transition"
+        className="w-full bg-white text-blue-600 py-3 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition"
       >
-        Chat on WhatsApp
+        Get Free Demo
       </button>
 
     </motion.div>
