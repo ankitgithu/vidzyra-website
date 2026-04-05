@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 
 
+
 import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Youtube, Linkedin, MessageCircle, Code } from 'lucide-react';
 import logo from "./assets/logo.png";
 import emailjs from "emailjs-com";
@@ -22,6 +23,15 @@ function App() {
   const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
   const [active, setActive] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
+
+  const [formData, setFormData] = useState({
+  name: "",
+  phone: "",
+  date: "",
+  timeSlot: ""
+});
+ 
+  
 
   const faqData = [
   {
