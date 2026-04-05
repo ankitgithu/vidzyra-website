@@ -97,7 +97,7 @@ useEffect(() => {
 
   const clients = useCounter(100);
   const projects = useCounter(250);
-  const experience = useCounter(3);
+  const experience = useCounter(5);
   const success = useCounter(100);
    
 
@@ -470,6 +470,7 @@ const handleMeetingSubmit = (e) => {
         { value: experience, label: "Years" },
         { value: success, label: "Success %" }
       ].map((stat, i) => (
+      
         <div
           key={i}
           className="py-4 rounded-xl bg-blue-50 dark:bg-[#111827]"
