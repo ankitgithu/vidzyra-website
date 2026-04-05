@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-
+import { Rocket, ShieldCheck, Users, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Youtube, Linkedin, MessageCircle, Code } from 'lucide-react';
 import logo from "./assets/logo.png";
 import emailjs from "emailjs-com";
@@ -17,7 +18,34 @@ import logo7 from "./assets/Cadets Classes.jpg";
 function App() {
   const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
   // ✅ yaha hona chahiye
-  
+  const useCounter = (end) => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+      let start = 0;
+      const duration = 1500;
+      const step = end / (duration / 16);
+
+      const timer = setInterval(() => {
+        start += step;
+        if (start >= end) {
+          setCount(end);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(start));
+        }
+      }, 16);
+
+      return () => clearInterval(timer);
+    }, [end]);
+
+    return count;
+  };
+
+  const clients = useCounter(100);
+  const projects = useCounter(250);
+  const experience = useCounter(3);
+  const success = useCounter(100);
    
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -332,6 +360,78 @@ const handleMeetingSubmit = (e) => {
           </div>
         </div>
       </section>
+
+      {/* 🔥 Why Choose Us Section */}
+<section className="py-16 px-4 sm:px-6 lg:px-8 bg-transparent">
+  
+  {/* ✅ Center Box Container */}
+  <div className="max-w-6xl mx-auto bg-white dark:bg-[#0B1120] 
+  rounded-3xl shadow-xl px-6 sm:px-10 py-12 transition-colors">
+
+    {/* Heading */}
+    <motion.h2
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white text-center"
+    >
+      Why Choose <span className="text-blue-600">Vidzyra?</span>
+    </motion.h2>
+
+    {/* Stats */}
+    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+      {[
+        { value: clients, label: "Clients" },
+        { value: projects, label: "Projects" },
+        { value: experience, label: "Years" },
+        { value: success, label: "Success %" }
+      ].map((stat, i) => (
+        <div
+          key={i}
+          className="py-4 rounded-xl bg-blue-50 dark:bg-[#111827]"
+        >
+          <h3 className="text-2xl font-bold text-blue-600">
+            {stat.value}+
+          </h3>
+          <p className="text-xs text-gray-600 dark:text-gray-400">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/* Features */}
+    <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      {[
+        { icon: <Rocket size={24} />, title: "Fast Delivery" },
+        { icon: <ShieldCheck size={24} />, title: "Secure & Reliable" },
+        { icon: <Users size={24} />, title: "Client Focused" },
+        { icon: <Zap size={24} />, title: "High Performance" }
+      ].map((item, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ y: -6 }}
+          className="p-4 rounded-xl bg-white dark:bg-[#111827] 
+          border border-gray-100 dark:border-gray-800 
+          shadow-sm hover:shadow-lg transition"
+        >
+          <div className="flex justify-center mb-2 text-blue-600">
+            {item.icon}
+          </div>
+
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white text-center">
+            {item.title}
+          </h3>
+        </motion.div>
+      ))}
+    </div>
+
+  </div>
+</section>
             {/* 🏆 Our Customers Section */}
 <section className="py-20 px-4 sm:px-6 lg:px-8">
   <div className="max-w-7xl mx-auto text-center">
