@@ -4,13 +4,18 @@ import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Y
 import logo from "./assets/logo.png";
 import emailjs from "emailjs-com";
 import bgimg from "./assets/bg img.png";
-
-
+import logo1 from "./assets/Sci krishi sansthan.jpg";
+import logo2 from "./assets/Cambridge Institute.jpeg";
+import logo3 from "./assets/Awasthi commerce classes.png";
+import logo4 from "./assets/Radon Chemistry Classes.png";
+import logo5 from "./assets/Priyanka Closet.jpeg";
+import logo6 from "./assets/The Eduverse.jpg";
+import logo7 from "./assets/Cadets Classes.jpg";
 
 
 
 function App() {
-
+  const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
   // ✅ yaha hona chahiye
   
    
@@ -327,7 +332,7 @@ const handleMeetingSubmit = (e) => {
           </div>
         </div>
       </section>
-              {/* 🏆 Our Customers Section */}
+            {/* 🏆 Our Customers Section */}
 <section className="py-20 px-4 sm:px-6 lg:px-8">
   <div className="max-w-7xl mx-auto text-center">
 
@@ -335,26 +340,16 @@ const handleMeetingSubmit = (e) => {
       Our Clients
     </h2>
 
-    {/* Logo Grid */}
     <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
 
-      {[
-        "https://play-lh.googleusercontent.com/Izgz9k3unCYGGQSoJtp6XXlLkcrsQUZAZcSiNLLIXyf1pT8RjRKiUh8iXvZOJB4KCDg=w240-h480-rw",
-        "https://scontent-bom5-2.xx.fbcdn.net/v/t39.30808-6/305797416_452033926942945_3184010486554020398_n.jpg",
-        "https://scontent-bom2-3.xx.fbcdn.net/v/t39.30808-6/477794861_618817550743522_5172861421116959719_n.jpg",
-        "https://play-lh.googleusercontent.com/4JhtUlw3KljbNoRvQFglvBYQpvlJT0iwC_A7Dw6hrL0yzVnoSaWxZJV9XvEF2dwJJdg=w240-h480-rw",
-        "https://scontent-bom5-1.xx.fbcdn.net/v/t39.30808-6/448603231_789428576654519_730945351043764092_n.jpg",
-        "https://via.placeholder.com/150",
-        "https://via.placeholder.com/150",
-        "https://via.placeholder.com/150",
-      ].map((logo, i) => (
+      {clientLogos.map((logo, i) => (
         <div
           key={i}
           className="aspect-square flex items-center justify-center border border-white/10 rounded-xl p-4"
         >
           <img
             src={logo}
-            alt="client"
+            alt={`client-${i}`}
             className="w-full h-full object-contain"
           />
         </div>
