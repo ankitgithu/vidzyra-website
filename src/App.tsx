@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Rocket, ShieldCheck, Users, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+
 import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Youtube, Linkedin, MessageCircle, Code } from 'lucide-react';
 import logo from "./assets/logo.png";
 import emailjs from "emailjs-com";
@@ -17,6 +19,26 @@ import logo7 from "./assets/Cadets Classes.jpg";
 
 function App() {
   const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
+  const [active, setActive] = useState(null);
+
+  const faqData = [
+  {
+    question: "What services do you offer?",
+    answer: "I provide video editing, graphic design, and social media content creation services."
+  },
+  {
+    question: "How can I contact you?",
+    answer: "You can contact me via WhatsApp or schedule a meeting directly from the website."
+  },
+  {
+    question: "Do you work with businesses?",
+    answer: "Yes, I work with brands, creators, and businesses to grow their online presence."
+  },
+  {
+    question: "What is your pricing?",
+    answer: "Pricing depends on project requirements. Contact me for a custom quote."
+  }
+];
   // ✅ yaha hona chahiye
   const useCounter = (end) => {
     const [count, setCount] = useState(0);
@@ -292,31 +314,37 @@ const handleMeetingSubmit = (e) => {
 </section>
 
 {/* About Section */}
-<section className="relative min-h-[60vh] flex items-center justify-center text-center px-4 overflow-hidden">
-  
-  <div className="relative z-10 text-white">
-    
-    <h3 className="text-xl sm:text-2xl text-blue-200 mb-4 tracking-wider">
-      Ankit Rajput
-    </h3>
+<section className="py-16 px-4 sm:px-6 lg:px-8 bg-transparent">
 
-   <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold flex justify-center items-center gap-3">
-  I am a
-  <span
-  className={`text-blue-300 inline-block transition-all duration-500 ease-in-out ${
-    animate
-      ? "opacity-100 translate-y-0"
-      : "opacity-0 translate-y-6"
-  }`}
->
-  {roles[roleIndex]}
-</span>
-</h2>
+  {/* ✅ Center Box */}
+  <div className="max-w-5xl mx-auto bg-white dark:bg-[#0B1120] 
+  rounded-3xl shadow-xl px-6 sm:px-10 py-14 text-center transition-colors">
 
-    <p className="mt-6 text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto">
-      I create high-quality videos, stunning graphics, and engaging content
-      that helps brands grow digitally.
-    </p>
+    <div className="text-gray-900 dark:text-white">
+
+      <h3 className="text-lg sm:text-xl text-blue-500 mb-3 tracking-wider">
+        Ankit Rajput
+      </h3>
+
+      <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold flex flex-wrap justify-center items-center gap-3">
+        I am a
+        <span
+          className={`text-blue-600 inline-block transition-all duration-500 ease-in-out ${
+            animate
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
+          }`}
+        >
+          {roles[roleIndex]}
+        </span>
+      </h2>
+
+      <p className="mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        I create high-quality videos, stunning graphics, and engaging content
+        that helps brands grow digitally.
+      </p>
+
+    </div>
 
   </div>
 </section>
@@ -455,6 +483,59 @@ const handleMeetingSubmit = (e) => {
         </div>
       ))}
 
+    </div>
+
+  </div>
+</section>
+
+{/* 🔥 FAQ Section */}
+<section className="py-16 px-4 sm:px-6 lg:px-8 bg-transparent">
+
+  <div className="max-w-6xl mx-auto bg-white dark:bg-[#0B1120] 
+  rounded-3xl shadow-xl px-6 sm:px-10 py-12 transition-colors">
+
+    {/* Heading */}
+    <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white">
+      Frequently Asked <span className="text-blue-600">Questions</span>
+    </h2>
+
+    {/* FAQ Items */}
+    <div className="mt-10 space-y-4 max-w-3xl mx-auto">
+      {faqData.map((item, index) => (
+        <div
+          key={index}
+          className="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden"
+        >
+          {/* Question */}
+          <button
+            onClick={() => setActive(index === active ? null : index)}
+            className="w-full flex justify-between items-center p-4 text-left"
+          >
+            <span className="font-medium text-gray-900 dark:text-white">
+              {item.question}
+            </span>
+
+            <span className="text-blue-600 text-xl">
+              {active === index ? "-" : "+"}
+            </span>
+          </button>
+
+          {/* Answer */}
+          <AnimatePresence>
+            {active === index && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="px-4 pb-4 text-sm text-gray-600 dark:text-gray-400"
+              >
+                {item.answer}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
     </div>
 
   </div>
