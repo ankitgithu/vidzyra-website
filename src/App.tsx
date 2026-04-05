@@ -3,6 +3,7 @@ import { Rocket, ShieldCheck, Users, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 
+
 import { Menu, X, Video, Image, FileVideo, Palette, Sparkles, Star, Instagram, Youtube, Linkedin, MessageCircle, Code } from 'lucide-react';
 import logo from "./assets/logo.png";
 import emailjs from "emailjs-com";
@@ -20,6 +21,7 @@ import logo7 from "./assets/Cadets Classes.jpg";
 function App() {
   const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
   const [active, setActive] = useState(null);
+  const [selectedService, setSelectedService] = useState(null);
 
   const faqData = [
   {
@@ -350,24 +352,49 @@ const handleMeetingSubmit = (e) => {
 </section>
 
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="glass-card p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl"
-              >
-                <div className="text-blue-200 mb-4">{service.icon}</div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-blue-100">{service.description}</p>
-              </div>
-            ))}
+    {/* Services Section */}
+<section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
+  <div className="max-w-7xl mx-auto text-center">
+
+    <h2 className="text-4xl sm:text-5xl font-bold mb-16 text-white">
+      Our Services
+    </h2>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      {services.map((service, index) => (
+        <motion.div
+          key={index}
+          onClick={() => setSelectedService(service)}   // ✅ CLICK ADD
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ y: -10 }}
+          className="cursor-pointer p-8 rounded-2xl backdrop-blur-lg bg-white/10 
+          border border-white/20 shadow-lg hover:shadow-2xl 
+          transition-all duration-300"
+        >
+          {/* Icon */}
+          <div className="text-blue-300 mb-4 flex justify-center">
+            {service.icon}
           </div>
-        </div>
-      </section>
+
+          {/* Title */}
+          <h3 className="text-2xl font-bold mb-4 text-white">
+            {service.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-blue-100 text-sm">
+            {service.description}
+          </p>
+        </motion.div>
+      ))}
+
+    </div>
+  </div>
+</section>
 
       {/* Reviews Section */}
    
@@ -576,6 +603,41 @@ const handleMeetingSubmit = (e) => {
           </div>
         </div>
       </footer>
+
+      {selectedService && (
+  <div
+    className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+    onClick={() => setSelectedService(null)}
+  >
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      className="bg-gradient-to-br from-blue-900 to-blue-700 p-8 rounded-3xl max-w-md w-full shadow-2xl"
+      onClick={(e) => e.stopPropagation()}
+    >
+
+      <h2 className="text-2xl font-bold mb-4">
+        {selectedService.title}
+      </h2>
+
+      <p className="text-blue-100 mb-6">
+        {selectedService.description}
+      </p>
+
+      <button
+        onClick={() =>
+          window.open(
+            `https://wa.me/918517895629?text=Hi Vidzyra, I'm interested in ${selectedService.title}`
+          )
+        }
+        className="w-full bg-green-500 py-3 rounded-full font-semibold hover:bg-green-600 transition"
+      >
+        Chat on WhatsApp
+      </button>
+
+    </motion.div>
+  </div>
+)}
 
       {/* WhatsApp Floating Button */}
       <button
