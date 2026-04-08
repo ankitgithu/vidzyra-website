@@ -3,13 +3,26 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 import Work from "../models/Work.js";
+import { fileURLToPath } from "url";
 
 const router = express.Router();
 
-// 📂 STORAGE SETUP
+// ✅ __dirname fix (ES module)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ✅ uploads folder path (ABSOLUTE)
+const uploadPath = path.join(__dirname, "../uploads");
+
+// ✅ ensure folder exists
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
+
+// 📂 STORAGE SETUP (FIXED)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, uploadPath); // ✅ absolute path
   },
   filename: (req, file, cb) => {
     const safeName = file.originalname
@@ -22,7 +35,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-
 // 🚀 UPLOAD ROUTE
 router.post(
   "/upload",
@@ -34,6 +46,14 @@ router.post(
   async (req, res) => {
     try {
       const { category, title } = req.body;
+
+      // 🧪 DEBUG (optional)
+      console.log("BODY:", req.body);
+      console.log("FILES:", req.files);
+
+      if (!category) {
+        return res.status(400).json({ error: "Category is required" });
+      }
 
       let newWork;
 
@@ -74,14 +94,12 @@ router.post(
         message: "Uploaded Successfully ✅",
         data: newWork,
       });
-
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: err.message });
     }
   }
 );
-
 
 // 📥 GET ALL WORKS
 router.get("/", async (req, res) => {
@@ -93,7 +111,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 // ❌ DELETE WORK + FILES
 router.delete("/:id", async (req, res) => {
   try {
@@ -103,11 +120,10 @@ router.delete("/:id", async (req, res) => {
       return res.status(404).json({ message: "Work not found" });
     }
 
-    // 🧹 DELETE FILES SAFELY
     const deleteFile = (filename) => {
       if (!filename) return;
 
-      const filePath = path.join("uploads", filename);
+      const filePath = path.join(uploadPath, filename);
 
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
@@ -121,7 +137,6 @@ router.delete("/:id", async (req, res) => {
     await Work.findByIdAndDelete(req.params.id);
 
     res.json({ message: "Deleted Successfully ✅" });
-
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
