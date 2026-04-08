@@ -15,8 +15,7 @@ function AdminPanel() {
   const [showPopup, setShowPopup] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
-  const API = "http://localhost:5000";
-
+ const API = "https://vidzyra-website.onrender.com";
   useEffect(() => {
     fetchWorks();
   }, []);
