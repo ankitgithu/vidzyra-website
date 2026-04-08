@@ -3,8 +3,8 @@ import { Rocket, ShieldCheck, Users, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import { BrowserRouter as Router, Routes, Route , Link } from "react-router-dom";
-// import WorkGallery from "./WorkGallery";
-// import AdminPanel from "./pages/AdminPanel";
+import WorkGallery from "./WorkGallery";
+import AdminPanel from "./pages/AdminPanel";
 
 
 
@@ -277,11 +277,11 @@ const handleMeetingSubmit = (e) => {
     Services
   </button>
 
-{/* <Link to="/works">
+<Link to="/works">
   <button className="hover:text-blue-300 transition-colors">
     Our Works
   </button>
-</Link> */}
+</Link>
 
   <button 
     onClick={() => scrollToSection('contact')} 
@@ -935,8 +935,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<AppContent />} />
-      {/* <Route path="/works" element={<WorkGallery />} /> */}
-      {/* <Route path="/admin" element={<AdminPanel />} /> */}
+      <Route path="/works" element={<WorkGallery />} />
+      <Route path="/admin" element={<AdminPanel />} />
     </Routes>
   );
 }

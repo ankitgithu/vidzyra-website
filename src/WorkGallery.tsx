@@ -69,7 +69,7 @@ const API = "https://vidzyra-website.onrender.com";
         {loading ? (
           <p className="text-center">Loading...</p>
         ) : filteredWorks.length === 0 ? (
-          <p className="text-center">No content found 😢</p>
+          <p className="text-center">Stay Tuned – New Work Dropping Soon</p>
         ) : (
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
