@@ -7,7 +7,7 @@ function WorkGallery() {
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const API = "http://localhost:5000";
+const API = "https://vidzyra-website.onrender.com";
 
   const filteredWorks = works.filter(
     (item) => item.category === activeTab
